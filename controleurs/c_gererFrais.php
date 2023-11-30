@@ -16,8 +16,9 @@
 
 $idVisiteur = $_SESSION['idVisiteur'];
 $mois = getMois(date('d/m/Y'));
-$numAnnee = substr($mois, 0, 4);
-$numMois = substr($mois, 4, 2);
+echo $mois; // 202311
+$numAnnee = substr($mois, 0, 4); // 2023
+$numMois = substr($mois, 4, 2); // 11
 $action = filter_input(INPUT_GET, 'action', FILTER_SANITIZE_STRING);
 switch ($action) {
 case 'saisirFrais':
@@ -26,7 +27,11 @@ case 'saisirFrais':
     }
     break;
 case 'validerMajFraisForfait':
-    $lesFrais = filter_input(INPUT_POST, 'lesFrais', FILTER_SANITIZE_STRING);
+    // $lesFrais = filter_input(INPUT_POST, 'lesFrais', FILTER_SANITIZE_STRING);
+    // var_dump($lesFrais);
+    $lesFrais=$_POST['lesFrais'];
+    // var_dump($lesFrais);
+    // die();
     if (lesQteFraisValides($lesFrais)) {
         $pdo->majFraisForfait($idVisiteur, $mois, $lesFrais);
     } else {

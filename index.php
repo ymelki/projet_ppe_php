@@ -20,6 +20,8 @@ session_start();
 $pdo = PdoGsb::getPdoGsb();
 $estConnecte = estConnecte();
 require 'vues/v_entete.php';
+// index.php?uc=toto
+// index.php
 $uc = filter_input(INPUT_GET, 'uc', FILTER_SANITIZE_STRING);
 if ($uc && !$estConnecte) {
     $uc = 'connexion';

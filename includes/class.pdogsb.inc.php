@@ -38,8 +38,9 @@
 
 class PdoGsb
 {
+    
     private static $serveur = 'mysql:host=localhost';
-    private static $bdd = 'dbname=base_gsb';
+    private static $bdd = 'dbname=gsb';
     private static $user = 'root';
     private static $mdp = '';
     private static $monPdo;
@@ -81,6 +82,16 @@ class PdoGsb
         }
         return PdoGsb::$monPdoGsb;
     }
+
+    // retourne les visiteurs
+    public function getVisiteurs(){
+        $requetePrepare = PdoGsb::$monPdo->prepare(
+            'SELECT * FROM VISITEUR'
+        );
+         $requetePrepare->execute();
+        return $requetePrepare->fetchAll();
+    }
+    //retourne les mois
 
     /**
      * Retourne les informations d'un visiteur
@@ -446,13 +457,13 @@ class PdoGsb
     public function getLesInfosFicheFrais($idVisiteur, $mois)
     {
         $requetePrepare = PdoGSB::$monPdo->prepare(
-            'SELECT ficheFrais.idEtat as idEtat, '
-            . 'ficheFrais.dateModif as dateModif,'
-            . 'ficheFrais.nbJustificatifs as nbJustificatifs, '
-            . 'ficheFrais.montantValide as montantValide, '
+            'SELECT fichefrais.idEtat as idetat, '
+            . 'fichefrais.dateModif as dateModif,'
+            . 'fichefrais.nbJustificatifs as nbJustificatifs, '
+            . 'fichefrais.montantValide as montantValide, '
             . 'etat.libelle as libEtat '
             . 'FROM fichefrais '
-            . 'INNER JOIN Etat ON ficheFrais.idEtat = Etat.id '
+            . 'INNER JOIN etat ON fichefrais.idEtat = etat.id '
             . 'WHERE fichefrais.idvisiteur = :unIdVisiteur '
             . 'AND fichefrais.mois = :unMois'
         );

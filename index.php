@@ -13,15 +13,16 @@
  * @version   GIT: <0>
  * @link      http://www.reseaucerta.org Contexte « Laboratoire GSB »
  */
-
 require_once 'includes/fct.inc.php';
 require_once 'includes/class.pdogsb.inc.php';
 session_start();
 $pdo = PdoGsb::getPdoGsb();
+// equivalent : $pdo = new \PDO('mysql:host=localhost;dbname=gsb', 'root', '');
 $estConnecte = estConnecte();
 require 'vues/v_entete.php';
 // index.php?uc=toto
 // index.php
+// $uc=$_GET['uc']
 $uc = filter_input(INPUT_GET, 'uc', FILTER_SANITIZE_STRING);
 if ($uc && !$estConnecte) {
     $uc = 'connexion';
@@ -44,5 +45,10 @@ case 'etatFrais':
 case 'deconnexion':
     include 'controleurs/c_deconnexion.php';
     break;
+case 'validerfrais':
+    echo "test";
+    include 'controleurs/c_validerFrais.php';
+    break;
 }
+
 require 'vues/v_pied.php';

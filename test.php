@@ -34,6 +34,10 @@ var_dump($fichesfrais);
 // index.php?uc=validerFrais&action=selectUser
 // test2 (recuperation des donnée du formulaire)
 // index.php?uc=validerFrais&action=afficheFrais
+// continuer la page test2 => afficher une vue
+// qui affichera vous avez cliqué sur tel user
+// et tel mois
+// afficher les frais F. et H.F. du visiteur
 ?>
 
 <?php 

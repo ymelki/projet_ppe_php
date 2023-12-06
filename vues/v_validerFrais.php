@@ -1,20 +1,15 @@
 
-<form action="test2.php">
-    <select name="" id="">
-        <option value=""></option>
-    </select>
-    <select name="" id="">
-        <option value=""></option>
-    </select>
+<form action="index.php?uc=validerfrais&action=afficheFrais" method="POST"> 
 
-    <label for="pet-select">Choose a pet:</label>
+    <label for="pet-select">Choisir un visiteur :</label>
 
-    <select name="pets" id="pet-select">
+    <select name="visiteur_form" id="pet-select">
         <?php foreach ($visiteurs as $visiteur) {
             $id=$visiteur['id'];
             ?>
            <option value="<?=$id ?>" > <?=$visiteur['prenom'] ?> <?=$visiteur['nom'] ?></option>
         <?php } ?>
     </select>
+    <input type="submit" value="envoyé">
 
 </form>
